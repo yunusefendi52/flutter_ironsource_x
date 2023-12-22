@@ -298,7 +298,9 @@ class FlutterIronsource_xPlugin: FlutterPlugin, MethodCallHandler, ActivityAware
 
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    this.mChannel.setMethodCallHandler(null)
+    if (this::mChannel.isInitialized) {
+      this.mChannel.setMethodCallHandler(null)
+    }
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
